@@ -2,6 +2,7 @@ package util.ManipulacaoDeArquivos;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,6 +20,8 @@ public class ArquivoTexto extends Arquivos {
     public ArquivoTexto(String path, String texto){
         super(path, texto);
     }
+
+	public ArquivoTexto(){}
 
     public void escrever()throws IOException{
         BufferedWriter bufferedWriter = new BufferedWriter( new FileWriter( getPATH() ) );
