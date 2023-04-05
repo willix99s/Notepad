@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Demo extends Application {
@@ -26,6 +27,7 @@ public class Demo extends Application {
         Parent root = FXMLLoader.load(Demo.class.getResource("/view/blocoNotas.fxml"));
         Scene cena = new Scene(root);
         stg.setTitle("Bloco de notas");
+        stg.getIcons().add(new Image("assets/notes.png"));
         stg.setScene(cena);
     }
 
