@@ -67,7 +67,7 @@ public abstract class Arquivos {
 
     public InterList<Object> getListaObjetos() { return listaObjetos; }
 
-    public void setListaObjetos(ListaDuplamenteEncadeada<Object> listaObjetos) { this.listaObjetos = listaObjetos; }
+    public void setListaObjetos(InterList<Object> listaObjetos) { this.listaObjetos = listaObjetos; }
 
     //#endregion
 
