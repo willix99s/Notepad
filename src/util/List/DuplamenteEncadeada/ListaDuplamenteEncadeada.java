@@ -3,7 +3,7 @@ package util.List.DuplamenteEncadeada;
 import java.io.Serializable;
 
 import util.Interfaces.List.InterList;
-
+import util.Iterator.IterarListaEncadeada;
 import util.Log.*;
 
 /**
@@ -98,6 +98,7 @@ public class ListaDuplamenteEncadeada<T> implements InterList<T>, Serializable {
             novo.setAnterior(this.primeiro);
             this.primeiro.getProximo().setAnterior(novo);
             this.primeiro.setProximo(novo);
+            this.tamanho++;
         } else if(noDuplo.equals(this.ultimo)){
             adicionarUltimo(value);
         } else {
@@ -105,6 +106,7 @@ public class ListaDuplamenteEncadeada<T> implements InterList<T>, Serializable {
             novo.setProximo(noDuplo.getProximo());
             noDuplo.getProximo().setAnterior(novo);
             noDuplo.setProximo(novo);
+            this.tamanho++;
         }
     }
 
@@ -190,6 +192,7 @@ public class ListaDuplamenteEncadeada<T> implements InterList<T>, Serializable {
             this.primeiro = this.primeiro.getProximo();
             this.primeiro.setAnterior(null);
             tmp.setProximo(null);
+            this.tamanho--;
             return value;
         }
     }
@@ -215,6 +218,7 @@ public class ListaDuplamenteEncadeada<T> implements InterList<T>, Serializable {
             this.ultimo = this.ultimo.getAnterior();
             this.ultimo.setProximo(null);
             tmp.setAnterior(null);
+            this.tamanho--;
             return value;
         }
     }
@@ -243,6 +247,7 @@ public class ListaDuplamenteEncadeada<T> implements InterList<T>, Serializable {
             value = noDuplo.getValor();
             noDuplo.setAnterior(null);
             noDuplo.setProximo(null);
+            this.tamanho--;
             return value;
         }
     }
@@ -277,6 +282,16 @@ public class ListaDuplamenteEncadeada<T> implements InterList<T>, Serializable {
             index = index.getAnterior();
         }
         System.out.println();
+    }
+
+    @Override
+    public IterarListaEncadeada<T> getIterator(){
+        return new IterarListaEncadeada<>(this.primeiro);
+    }
+
+    @Override
+    public Integer getSize(){
+        return tamanho;
     }
     
     //#endregion

@@ -1,7 +1,7 @@
 package util.Interfaces.List;
 
 import util.Interfaces.CollectionInteface;
-
+import util.Iterator.IterarListaEncadeada;
 import util.Log.NaoTemNadaAqui;
 
 import util.Log.ForaDosLimites;
@@ -23,4 +23,6 @@ public interface InterList<T> extends CollectionInteface<T> {
     T remover(T crit) throws ForaDosLimites; 
 	void mostrar() throws NaoTemNadaAqui;
 	void mostrarInverso() throws NaoTemNadaAqui;
+    Integer getSize();
+    IterarListaEncadeada<T> getIterator();
 }
