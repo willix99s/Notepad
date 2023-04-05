@@ -8,16 +8,31 @@ import util.Interfaces.List.InterList;
 import util.Iterator.IterarListaEncadeada;
 import util.List.DuplamenteEncadeada.ListaDuplamenteEncadeada;
 
+/**
+ * <h1>GerenciadorTarefas</h1> é uma classe {@code GerenciadorTarefas} que gerencia a entidade de {@link Tarefa}, criando um
+ * CRUD para gerenciar esta entidade
+ * 
+ */
 public class GerenciadorTarefas {
+
+    //#region ATRIBUTOS
 
     private InterList<Tarefa> tarefas;
 
     private IterarListaEncadeada<Tarefa> iterarTarefas;
 
+    //#endregion
+
+    //#region CONSTRUTORES
+
     public GerenciadorTarefas(){
         this.tarefas = new ListaDuplamenteEncadeada<>();
     }
 
+    //#endregion
+
+    //#region MÉTODOS
+    
     public String adicionarTarefa(Tarefa tarefa){
         this.tarefas.adicionar(tarefa);
         return "Tarefa de id = [ " + tarefa.getID() + " ] adicionada";
@@ -108,4 +123,5 @@ public class GerenciadorTarefas {
         return "Tarefa de id [ " + tarefa.getID() + " ] atualizado";
     }
 
+    //#endregion
 }
