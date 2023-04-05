@@ -17,6 +17,8 @@ import util.List.DuplamenteEncadeada.ListaDuplamenteEncadeada;
  */
 public class ArquivoBinario extends Arquivos {
 
+    public ArquivoBinario() {}
+
     public ArquivoBinario(String path, ListaDuplamenteEncadeada<Object> texto){
         super(path, texto);
     }

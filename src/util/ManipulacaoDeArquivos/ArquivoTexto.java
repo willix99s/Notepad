@@ -20,6 +20,8 @@ public class ArquivoTexto extends Arquivos {
         super(path, texto);
     }
 
+	public ArquivoTexto(){}
+
     public void escrever()throws IOException{
         BufferedWriter bufferedWriter = new BufferedWriter( new FileWriter( getPATH() ) );
 		bufferedWriter.append( getTexto() );

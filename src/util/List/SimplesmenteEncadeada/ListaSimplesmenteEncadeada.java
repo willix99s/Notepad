@@ -1,7 +1,7 @@
 package util.List.SimplesmenteEncadeada;
 
 import util.Interfaces.List.InterList;
-
+import util.Iterator.IterarListaEncadeada;
 import util.Log.*;
 
 /**
@@ -94,8 +94,8 @@ public class ListaSimplesmenteEncadeada<T> implements InterList<T> {
             No<T> anterior = noAnterior(noCriterio);
             anterior.setProximo(no);
             no.setProximo(noCriterio);
+            this.tamanho++;
         }
-        this.tamanho++;
     }
 
     /**
@@ -300,6 +300,16 @@ public class ListaSimplesmenteEncadeada<T> implements InterList<T> {
             System.out.println("Valor: [ " + index.getValor() + " ]");
             index = noAnterior(index);
         }
+    }
+
+    @Override
+    public IterarListaEncadeada<T> getIterator() {
+        return new IterarListaEncadeada<>(this.primeiro);
+    }
+
+    @Override
+    public Integer getSize(){
+        return tamanho;
     }
 
     //#endregion
