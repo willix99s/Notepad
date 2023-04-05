@@ -3,7 +3,6 @@ package util.Interfaces.ManipularArquivos;
 import java.io.IOException;
 
 import util.Interfaces.List.InterList;
-import util.List.DuplamenteEncadeada.ListaDuplamenteEncadeada;
 
 /**
  * <h1>Arquivos</h1> é uma interface {@code Arquivos} para escrita e leitra de arquivos tanto de texto, quanto arquivos binários.

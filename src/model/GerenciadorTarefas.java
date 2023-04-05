@@ -1,6 +1,4 @@
 package model;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class GerenciadorTarefas {
         private Tarefa[] tarefas;
@@ -23,7 +21,7 @@ public class GerenciadorTarefas {
             for (int index = 0; index < tarefas.length; index++) {
                 if (tarefas[index] == null) {
                     tarefas[index] = tarefa;
-                    return;
+                    break;
                 }               
             }
             // Se não houver espaço disponível, lançar uma exceção.
@@ -32,21 +30,8 @@ public class GerenciadorTarefas {
 
         public void apagarTarefa(int indice) {
             if (indice < 0 || indice >= tarefas.length) {
-            throw new IllegalArgumentException("Índice inválido.");
+                throw new IllegalArgumentException("Índice inválido.");
             }
             tarefas[indice] = null;
             }
-
-        // Salvar em um arquivo de texto.
-        public void salvarTarefas(String nomeArquivo) throws IOException {
-            FileWriter fw = new FileWriter(nomeArquivo);
-            for (Tarefa t : tarefas) {
-                if (t != null) {
-                    fw.write(t.getTipo() + "," + t.getDescricao() + "," + t.getData() + "," + t.getPrioridade() + "\n");
-                }
-            }
-            fw.close();
-        }
-        
-
 }
