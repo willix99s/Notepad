@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+   <children>
+      <AnchorPane prefHeight="55.0" prefWidth="605.0" style="-fx-background-color: #AAAA;">
+         <children>
+            <Text layoutX="260.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notepad">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="55.0" prefHeight="516.0" prefWidth="47.0" style="-fx-background-color: #AAAA;">
+         <children>
+            <VBox prefHeight="546.0" prefWidth="47.0" style="-fx-background-color: #FFFF;">
+               <children>
+                  <Button fx:id="home_icon" mnemonicParsing="false" onAction="#irParaHome">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/home%20(2).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="criar_icon" mnemonicParsing="false" onAction="#abrirModalCriar">
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/plus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="editar_icon" mnemonicParsing="false" onAction="#abrirModalEditar">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/editing.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="logout_icon" mnemonicParsing="false" onAction="#fechar">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="TABELA_PANE" layoutX="65.0" layoutY="97.0" prefHeight="55.0" prefWidth="74.0">
+         <children>
+            <TableView fx:id="TABELA" prefHeight="441.0" prefWidth="540.0">
+              <columns>
+                <TableColumn fx:id="col_id" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="col_nome" prefWidth="78.0" text="Nome" />
+                  <TableColumn fx:id="col_descricao" prefWidth="83.0" text="Descricao" />
+                  <TableColumn fx:id="col_data" prefWidth="69.0" text="Data" />
+                  <TableColumn fx:id="col_prioridade" prefWidth="90.0" text="Prioridade" />
+                  <TableColumn fx:id="col_botao_abrir" prefWidth="75.0" text="Abrir" />
+                  <TableColumn fx:id="col_botao_deletar" prefWidth="94.0" text="Deletar" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Pane fx:id="CRIAR_MODAL_PANE" layoutX="97.0" layoutY="65.0" prefHeight="43.0" prefWidth="85.0" visible="false">
+         <children>
+            <Pane prefHeight="363.0" prefWidth="450.0" style="-fx-background-color: #AAA;">
+               <children>
+                  <GridPane prefHeight="342.0" prefWidth="434.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descricao:" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prioridade:" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data:" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="tarefa_nome" prefHeight="24.0" prefWidth="152.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="tarefa_descricao" prefHeight="24.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="tarefa_data" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <MenuButton mnemonicParsing="false" prefHeight="24.0" prefWidth="174.0" text="Escolha" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                          <items>
+                              <RadioMenuItem fx:id="prioridade_alta" mnemonicParsing="false" text="Alta" />
+                              <RadioMenuItem fx:id="prioridade_media" mnemonicParsing="false" text="Media" />
+                              <RadioMenuItem fx:id="prioridade_baixa" mnemonicParsing="false" text="Baixa" />
+                          </items>
+                        </MenuButton>
+                        <Button fx:id="cancelarBottaoAdd" mnemonicParsing="false" onAction="#fecharModalAdd" style="-fx-background-color: #FF0000;" text="Cancelar" GridPane.rowIndex="4" />
+                        <Button fx:id="criarBotaoAdd" mnemonicParsing="false" onAction="#criarModalAdd" style="-fx-background-color: #00FF00;" text="Criar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="EDITAR_MODAL_PANE" layoutX="88.0" layoutY="76.0" prefHeight="43.0" prefWidth="85.0" visible="false">
+         <children>
+            <Pane prefHeight="363.0" prefWidth="450.0" style="-fx-background-color: #AAA;">
+               <children>
+                  <GridPane prefHeight="342.0" prefWidth="434.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descricao:" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prioridade:" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data:" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="tarefa_nome_editar" prefHeight="24.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="tarefa_descricao_editar" prefHeight="24.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <MenuButton mnemonicParsing="false" prefHeight="24.0" prefWidth="174.0" text="Escolha" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <items>
+                              <RadioMenuItem fx:id="tarefa_alta_editar" mnemonicParsing="false" text="Alta" />
+                              <RadioMenuItem fx:id="tarefa_media_editar" mnemonicParsing="false" text="Media" />
+                              <RadioMenuItem fx:id="tarefa_baixa_editar" mnemonicParsing="false" text="Baixa" />
+                           </items>
+                        </MenuButton>
+                        <Button fx:id="cancelarBotaoEditar" mnemonicParsing="false" onAction="#fecharEdicao" style="-fx-background-color: #FF0000;" text="Cancelar" GridPane.rowIndex="6" />
+                        <Button fx:id="atualizarBotaoEditar" mnemonicParsing="false" onAction="#atualizar" style="-fx-background-color: #00FF00;" text="Atualizar" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="tarefa_id_editar" prefHeight="24.0" prefWidth="152.0" GridPane.columnIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Caminho do arquivo:" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="tarefa_caminho_editar" prefHeight="24.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

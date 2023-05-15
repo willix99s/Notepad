@@ -24,7 +24,7 @@ public class Demo extends Application {
     }
 
     public void iniciar() throws IOException {
-        Parent root = FXMLLoader.load(Demo.class.getResource("/view/blocoNotas.fxml"));
+        Parent root = FXMLLoader.load(Demo.class.getResource("/view/home.fxml"));
         Scene cena = new Scene(root);
         stg.setTitle("Bloco de notas");
         stg.getIcons().add(new Image("assets/notes.png"));

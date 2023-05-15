@@ -1,14 +1,10 @@
 package model;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.UUID;
 
 public class Tarefa {
-    // Exemplo:
-    // Tipo - Escola. (Escola, DiaDia, Casa)
-    // Descricacao - Fazer tarefa de geografia.
-    // Data - Entregar na primeira semana de março.
-    // Prioridade - 1. (1,2 e 3)
 
     private UUID id;
 
@@ -20,13 +16,16 @@ public class Tarefa {
 
     private Prioridade prioridade;
 
-    public Tarefa(String nome, String descricao, LocalDate data, Prioridade prioridade) {
+    private File notas;
+
+    public Tarefa(String nome, String descricao, LocalDate data, Prioridade prioridade, File notas) {
 
         this.id = UUID.randomUUID();
         this.nome = nome;
         this.descricao = descricao;
         this.data = data;
         this.prioridade = prioridade;
+        this.notas = notas;
 
     }
 
@@ -36,6 +35,10 @@ public class Tarefa {
 
     public UUID getID(){
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getNome(){
@@ -70,11 +73,20 @@ public class Tarefa {
         this.prioridade = prioridade;
     }
 
+    public File getNotas() {
+        return notas;
+    }
+
+    public void setNotas(File notas) {
+        this.notas = notas;
+    }
+
     public void exibirTarefa() {
         System.out.println("Descrição: " + descricao);
         System.out.println("Data de vencimento: " + data);
         System.out.println("Nome: " + nome);
         System.out.println("Prioridade: " + prioridade);
+        System.out.println("Notas: " + notas.getName());
         System.out.println("-----------");
     }
 }
