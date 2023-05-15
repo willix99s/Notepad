@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
-import java.io.File;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 import javafx.collections.FXCollections;
@@ -33,26 +34,26 @@ public class HomeController<E> implements Initializable {
     @FXML
     private TableView<Tarefa> TABELA = new TableView<>();
 
-    // @FXML
-    // private TableColumn<Tarefa, ?> col_botao_abrir;
-
-    // @FXML
-    // private TableColumn<Tarefa, ?> col_botao_deletar;
+    @FXML
+    private Button botaoAbrirNotas;
 
     @FXML
-    private TableColumn<Tarefa, LocalDate> col_data = new TableColumn<>("Data");
+    private Button botaoDeletarNotas;
 
     @FXML
-    private TableColumn<Tarefa, String> col_descricao = new TableColumn<>("Descricao");
+    private TableColumn<Tarefa, LocalDate> col_data;
 
     @FXML
-    private TableColumn<Tarefa, UUID> col_id = new TableColumn<>("ID");
+    private TableColumn<Tarefa, String> col_descricao;
 
     @FXML
-    private TableColumn<Tarefa, String> col_nome = new TableColumn<>("Nome");
+    private TableColumn<Tarefa, UUID> col_id;
 
     @FXML
-    private TableColumn<Tarefa, Prioridade> col_prioridade = new TableColumn<>("Prioridade");
+    private TableColumn<Tarefa, String> col_nome;
+
+    @FXML
+    private TableColumn<Tarefa, Prioridade> col_prioridade;
 
     @FXML
     private Pane CRIAR_MODAL_PANE;
@@ -137,6 +138,9 @@ public class HomeController<E> implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         carregarTabelaTarefas();
+
+        this.TABELA.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> selecionarItemTableViewTarefas(newValue));
     }
 
     public void carregarTabelaTarefas(){
@@ -147,21 +151,32 @@ public class HomeController<E> implements Initializable {
         this.col_data.setCellValueFactory(new PropertyValueFactory<>("Data"));
         this.col_prioridade.setCellValueFactory(new PropertyValueFactory<>("Prioridade"));
 
-        this.TABELA.getColumns().addAll(col_id, col_nome, col_descricao, col_data, col_prioridade);
-
         try {
-            this.iterarListaEncadeada = this.tarefas.listar().getIterator();
-
-            while(this.iterarListaEncadeada.hasNextDuplo()){
-                this.lista.add(this.iterarListaEncadeada.getProximoDuplo().getValor());
-            }
-
             this.observableTarefas = FXCollections.observableArrayList(
-                this.lista
+                lista
             );
             this.TABELA.setItems(observableTarefas);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void selecionarItemTableViewTarefas(Tarefa tarefa) {
+        if (tarefa != null) {
+            System.out.println("Tarefa selecionado no TableView: " + tarefa.getNome());
+        }
+    }
+
+    @FXML
+    void abrirNotas(ActionEvent event) throws IOException {
+    }
+
+    @FXML
+    void deletarNotas(ActionEvent event) {
+        Tarefa tarefa = TABELA.getSelectionModel().getSelectedItem();
+        if (tarefa != null) {
+            System.out.println("tarefa removido do TableView: " + tarefa.getNome());
+            TABELA.getItems().remove(tarefa);
         }
     }
 
@@ -197,9 +212,16 @@ public class HomeController<E> implements Initializable {
         nova_tarefa.setDescricao(this.tarefa_descricao.getText());
         this.addPrioridade(nova_tarefa);
         nova_tarefa.setData(this.tarefa_data.getValue());
-        this.tarefas.adicionarTarefa(nova_tarefa);
+        this.lista.add(nova_tarefa);
         CRIAR_MODAL_PANE.setVisible(false);
         TABELA_PANE.setVisible(true);
+        this.tarefa_nome.setText("");
+        this.tarefa_descricao.setText("");
+        this.prioridade_alta.setSelected(false);
+        this.prioridade_media.setSelected(false);
+        this.prioridade_baixa.setSelected(false);
+        this.tarefa_data.setValue(null);
+        this.carregarTabelaTarefas();
     }
 
     @FXML
@@ -215,6 +237,12 @@ public class HomeController<E> implements Initializable {
 
     @FXML
     void fecharModalAdd(ActionEvent event) {
+        this.tarefa_nome.setText("");
+        this.tarefa_descricao.setText("");
+        this.prioridade_alta.setSelected(false);
+        this.prioridade_media.setSelected(false);
+        this.prioridade_baixa.setSelected(false);
+        this.tarefa_data.setValue(null);
         CRIAR_MODAL_PANE.setVisible(false);
         TABELA_PANE.setVisible(true);
     }

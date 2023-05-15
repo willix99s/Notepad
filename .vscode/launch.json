@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TelaNotas",
+            "request": "launch",
+            "mainClass": "VE.TelaNotas",
+            "projectName": "notepad_a301f0cd"
+        },
+        {
+            "type": "java",
+            "name": "Demo",
+            "request": "launch",
+            "mainClass": "VE.Demo",
+            "projectName": "notepad_a301f0cd"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
