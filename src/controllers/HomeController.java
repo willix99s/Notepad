@@ -14,7 +14,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioMenuItem;
@@ -26,6 +28,7 @@ import model.Tarefa;
 import service.GerenciadorTarefas;
 import util.Interfaces.List.InterList;
 import util.Iterator.IterarListaEncadeada;
+import view.VE.Demo;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -135,6 +138,8 @@ public class HomeController<E> implements Initializable {
 
     private List<Tarefa> lista = new ArrayList<>();
 
+    private Parent root; 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         carregarTabelaTarefas();
@@ -153,7 +158,7 @@ public class HomeController<E> implements Initializable {
 
         try {
             this.observableTarefas = FXCollections.observableArrayList(
-                lista
+                this.tarefas.listar()
             );
             this.TABELA.setItems(observableTarefas);
         } catch (Exception e) {
@@ -169,6 +174,15 @@ public class HomeController<E> implements Initializable {
 
     @FXML
     void abrirNotas(ActionEvent event) throws IOException {
+        Tarefa tarefa = TABELA.getSelectionModel().getSelectedItem();
+        if (tarefa != null) {
+            System.out.println("tarefa removido do TableView: " + tarefa.getNome());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/blocoNotas.fxml"));
+            root = loader.load();
+            BlocoNotasController blocoNotasController = loader.getController();
+            tarefa.setNotas( blocoNotasController.getFile() );
+            Demo.notas();
+        }
     }
 
     @FXML
@@ -212,7 +226,8 @@ public class HomeController<E> implements Initializable {
         nova_tarefa.setDescricao(this.tarefa_descricao.getText());
         this.addPrioridade(nova_tarefa);
         nova_tarefa.setData(this.tarefa_data.getValue());
-        this.lista.add(nova_tarefa);
+        nova_tarefa.setNotas(null);
+        this.tarefas.adicionarTarefa(nova_tarefa);
         CRIAR_MODAL_PANE.setVisible(false);
         TABELA_PANE.setVisible(true);
         this.tarefa_nome.setText("");
@@ -226,7 +241,7 @@ public class HomeController<E> implements Initializable {
 
     @FXML
     void fechar(ActionEvent event) {
-
+        Demo.fechar();
     }
 
     @FXML
