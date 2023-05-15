@@ -45,38 +45,23 @@ public class BlocoNotasController {
 
     @FXML
     void abrirArquivo(ActionEvent event) {
-        if(this.tarefa.getNotas() != null){
-            this.arquivos_binario.setPATH(this.tarefa.getNotas());
-            try {
-                this.areaTexto.clear();
-                this.areaTexto.appendText(this.arquivos_binario.ler().removerElemento().toString());
-            } catch (NaoTemNadaAqui e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Stage stg = new Stage();
-            stg.setTitle("Abrir arquivo");
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setInitialDirectory(new File("src/tmp"));
-            File selectedFile =  fileChooser.showOpenDialog(stg);
-            if(selectedFile != null){
-                this.arquivos_binario.setPATH(selectedFile.getPath());
-                this.tarefa.setNotas(selectedFile.getPath());
-            }
-            try {
-                this.areaTexto.clear();
-                this.areaTexto.appendText(this.arquivos_binario.ler().removerElemento().toString());
-            } catch (NaoTemNadaAqui e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Stage stg = new Stage();
+        stg.setTitle("Abrir arquivo");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("src/tmp"));
+        File selectedFile =  fileChooser.showOpenDialog(stg);
+        if(selectedFile != null){
+            this.arquivos_binario.setPATH(selectedFile.getPath());
+        }
+        try {
+            this.areaTexto.clear();
+            this.areaTexto.appendText(this.arquivos_binario.ler().removerElemento().toString());
+        } catch (NaoTemNadaAqui e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -92,44 +77,25 @@ public class BlocoNotasController {
 
     @FXML
     void salvarArquivo(ActionEvent event) {
-        if(this.tarefa.getNotas() != null){
+        Stage stg = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Salvar Arquivo");
+        fileChooser.setInitialDirectory(new File("src/tmp"));
+        File file = fileChooser.showSaveDialog(stg);
+        if(file != null){
             InterList<Object> texto = new ListaDuplamenteEncadeada<>();
             texto.adicionar(this.areaTexto.getText());
-            this.arquivos_binario.setPATH(this.tarefa.getNotas());
+            this.arquivos_binario.setPATH(file.getAbsolutePath());
             this.arquivos_binario.setListaObjetos(texto);
             System.out.println(this.areaTexto.getText());
-            try {
-                this.arquivos_binario.escrever();
-            } catch (NaoTemNadaAqui e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Stage stg = new Stage();
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Salvar Arquivo");
-            fileChooser.setInitialDirectory(new File("src/tmp"));
-            File file = fileChooser.showSaveDialog(stg);
-            if(file != null){
-                InterList<Object> texto = new ListaDuplamenteEncadeada<>();
-                texto.adicionar(this.areaTexto.getText());
-                this.arquivos_binario.setPATH(file.getAbsolutePath());
-                this.arquivos_binario.setListaObjetos(texto);
-                System.out.println(this.areaTexto.getText());
-            }
-            try {
-                this.arquivos_binario.escrever();
-            } catch (NaoTemNadaAqui e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
-    }
-
-    void setTarefa(Tarefa task){
-        this.tarefa = task;
+        try {
+            this.arquivos_binario.escrever();
+        } catch (NaoTemNadaAqui e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     String getFile(){
